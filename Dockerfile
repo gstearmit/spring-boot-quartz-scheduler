@@ -11,7 +11,8 @@ ENV GRADLE_USER_HOME .gradle
 WORKDIR scheduler-app
 COPY --from=ui_build scheduler-app/ .
 RUN chmod +x gradlew
-RUN sh gradlew build -x test
+RUN sh gradlew build  test
+# RUN sh gradlew build -x test
 
 CMD java \
     -jar build/libs/spring-boot-quartz-scheduler-1.0-SNAPSHOT.jar

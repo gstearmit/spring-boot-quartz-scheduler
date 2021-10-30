@@ -1,0 +1,40 @@
+---
+networks: 
+  postgres: 
+    driver: bridge
+services: 
+  postgres: 
+    container_name: postgres
+    environment: 
+      PGDATA: /data/postgres
+      POSTGRES_DB: "${DB_NAME:-quartz_scheduler}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD:-postgres}"
+      POSTGRES_USER: "${DB_USERNAME:-postgres}"
+    image: postgres
+    networks: 
+      - postgres
+    ports: 
+      - "5433:5432"
+    restart: unless-stopped
+    volumes: 
+      - "postgres:/data/postgres"
+  quartzscheduler: 
+    build: "."
+    container_name: quartz_scheduler
+    depends_on: 
+      - postgres
+    environment: 
+      DB_HOST: "${DB_HOST:-postgres}"
+      DB_NAME: "${DB_NAME:-quartz_scheduler}"
+      DB_PASSWORD: "${DB_PASSWORD:-postgres}"
+      DB_PORT: 5433
+      DB_USERNAME: "${DB_USERNAME:-postgres}"
+    image: needubey/quartz_scheduler
+    networks: 
+      - postgres
+    ports: 
+      - "${SCHEDULER_PORT:-1234}:1234"
+    restart: unless-stopped
+version: "3"
+volumes: 
+  postgres: ~

@@ -48,16 +48,16 @@ Run:
 Docker:
 
        ## build
-       docker build -t needubey/quartz_scheduler
+       docker build -t needubey/quartz_scheduler .
        
        # RUN
        docker run --name quartz_scheduler \
            -p 1234:1234 \
            --env DB_NAME="quartz_scheduler" \
-           --env DB_HOST="postgres" \
+           --env DB_HOST="localhost" \
            --env DB_PORT="5432" \
            --env DB_USER_NAME="postgres" \
-           --env DB_PASSWORD="postgres" \
+           --env DB_PASSWORD="875052" \
            --detach \
            needubey/quartz_scheduler
            

@@ -22,8 +22,8 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn href="https://github.com/neeraj338" target="_blank" text>
-      <span class="mr-2">@neeraj338</span>
+    <v-btn href="https://github.com/gstearmit/spring-boot-quartz-scheduler" target="_blank" text>
+      <span class="mr-2">@gstearmit</span>
       <v-icon>mdi-github</v-icon>
     </v-btn>
   </v-app-bar>
