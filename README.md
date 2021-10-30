@@ -28,7 +28,7 @@ Environment variable:
 
 Quartz schema creation:
 
-    ./gradlew flywayMigrate 
+    ./gradlew flywayMigrate --status
     #Note : this is alreday initialise by spring hibernate.ddl-auto: update property
     
 To build the fat JAR and run tests:
@@ -121,3 +121,37 @@ However, we can run it together by copying the vue-app/dist/ to src/main/resourc
 
 References:
 -----------
+
+
+JSON 
+-------------------
+{"statusCode":200,"data":[{"jobName":"New Job","scheduleTime":"2021-10-30T10:06:00.000+0000","lastFiredTime":null,"groupName":"SampleGroup","jobStatus":"SCHEDULED","nextFireTime":"2021-10-30T10:06:00.000+0000"}]}
+
+{
+"statusCode": 200,
+"data": [
+    {
+        "jobName": "New Job",
+        "scheduleTime": "2021-10-30T10:06:00.000+0000",
+        "lastFiredTime": null,
+        "groupName": "SampleGroup",
+        "jobStatus": "SCHEDULED",
+        "nextFireTime": "2021-10-30T10:06:00.000+0000"
+    }
+  ]
+}
+
+CURL : curl -X GET "http://localhost:1234/scheduler/jobs" -H "accept: */*"
+{
+    "statusCode": 200,
+    "data": [
+        {
+            "jobName": "testing",
+            "scheduleTime": "2021-10-30T10:35:00.000+0000",
+            "lastFiredTime": "2021-10-30T10:35:00.000+0000",
+            "groupName": "SampleGroup",
+            "jobStatus": "SCHEDULED",
+            "nextFireTime": "2021-10-30T10:36:00.000+0000"
+         }
+    ]
+}
